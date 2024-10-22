@@ -1,1 +1,4 @@
-
+* Pre-Installed Command in Ubuntu
+*** #+BEGIN_SRC bash
+    objdump -d <filename>
+    #+END_SRC

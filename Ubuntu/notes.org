@@ -1,9 +1,0 @@
-* Pre-Installed Command in Ubuntu
-This command uses `objdump` to disassemble the specified binary file.
-
-** Usage
-To use this command, replace `<filename>` with the name of your binary file.
-
-#+BEGIN_SRC bash
-objdump -d example
-#+END_SRC

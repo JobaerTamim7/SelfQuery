@@ -1,7 +1,7 @@
 # Poetry  
 ## Python Dependency and Automation Manager
 
-- ### Get Started:  
+- ### Get Started with Command:  
   - **Installation Command**
     
     ```bash

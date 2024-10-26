@@ -1,105 +1,112 @@
+### Getting Started with Poetry
 
-
-### Get Started with Command:  
 - **Installation**
 
     ```bash
     pipx install poetry
     ```
-    
+
     <details>
-    <summary>Fun Fact: pip vs pipx</span></summary>
+    <summary>Fun Fact: pip vs pipx</summary>
     
-    - **`pip`** 
-         1. **Project Dependencies** (e.g. Flask, Requests):<br><br>
-         
+    - **`pip`** is generally used for **project dependencies** (e.g., Flask, Requests) and **development tools** (e.g., Black, PyTest):
+    
         ```bash
-        pip install flask requests 
-        ```
-        2. **Development Tools** (e.g. Black, PyTest):<br><br>
-        
-        ```bash
+        pip install flask requests
         pip install black pytest
         ```
     
-    - **`pipx`** 
-        1. **Standalone Applications** (e.g. Poetry, httpie): <br><br>
-        
+    - **`pipx`** is better suited for **standalone applications** and **CLI tools** (e.g., Poetry, httpie, awscli):
+    
         ```bash
         pipx install poetry httpie
-        ```
-        2. **CLI Tools** (e.g. awscli, youtube-dl): <br><br>
-        
-        ```bash
         pipx install awscli youtube-dl
-    ```
-
-    #### Summary:
-    - Use **`pip`** for project dependencies and development tools within a virtual environment.
-    - Use **`pipx`** for installing standalone command-line applications, ensuring each tool has its own isolated environment.
+        ```
+        
+    - **Summary**: Use **`pip`** for project-specific dependencies in a virtual environment, and **`pipx`** for standalone applications, which are isolated from other environments.
     
-    *Standalone Application: Apps that do not rely on external dependencies (such as libraries or frameworks), and can function independently.*
+     *Standalone Application: Apps that do not rely on external dependencies (such as libraries or frameworks), and can function independently.*
     </details>
 
-- **New Project**
+- **Create a New Project**
 
-  ```bash
-  poetry new <project-name>
-  ```
-  *for more :* <code>[new](https://python-poetry.org/docs/cli/#new)</code>
--   **Add Poetry in already built project**
+    ```bash
+    poetry new <project-name>
+    ```
+    For more [`new`](https://python-poetry.org/docs/cli/#new)
+
+- **Add Poetry to an Existing Project**
+
     ```bash
     poetry init
     ```
-    *for more :* <code>[init](https://python-poetry.org/docs/cli/#init)</code>
+    For more [`init`](https://python-poetry.org/docs/cli/#init)
+
 - **Activate or Create Virtual Environment**
+
     ```bash
     poetry shell
     ```
-    *for more :* <code>[shell](https://python-poetry.org/docs/cli/#shell)</code>
-- **Search pakage in remote**
+    For more [`shell`](https://python-poetry.org/docs/cli/#shell)
+
+- **Search for a Package**
+
     ```bash
-    poetry search <pakage-name>
+    poetry search <package-name>
     ```
-    *for more :* <code>[search](https://python-poetry.org/docs/cli/#search)</code>
-- **Add Pakage**
+    For more [`search`](https://python-poetry.org/docs/cli/#search)
+
+- **Add a Package**
+
     ```bash
-    poetry add <pakage-name>
+    poetry add <package-name>
     ```
-    *for more :* <code>[add](https://python-poetry.org/docs/cli/#add)</code>
-- **Remove Pakage**
+    For more [`add`](https://python-poetry.org/docs/cli/#add)
+
+- **Remove a Package**
+
     ```bash
-    poetry remove <pakage-name>
+    poetry remove <package-name>
     ```
-    *for more :* <code>[remove](https://python-poetry.org/docs/cli/#remove)</code>
-- **Validate pyproject.toml**
+    For more [`remove`](https://python-poetry.org/docs/cli/#remove)
+
+- **Validate `pyproject.toml`**
+
     ```bash
     poetry check
     ```
-    <small>Returns All set! message if everything is okay.</small>
+    <small>Returns "All set!" if everything is okay.</small>
 
-    *for more :* <code>[check](https://python-poetry.org/docs/cli/#check)</code>
-- **Locking Dependencies**
+    For more [`check`](https://python-poetry.org/docs/cli/#check)
+
+- **Lock Dependencies**
+
     ```bash
     poetry lock
     ```
-    <small>It does not install the project pakage</small>
+    <small>This does not install the project package.</small>
 
-    *for more :* <code>[lock](https://python-poetry.org/docs/cli/#lock)</code>
-- **Install Project Pakage**
+    For more [`lock`](https://python-poetry.org/docs/cli/#lock)
+
+- **Install Project Package**
+
     ```bash
     poetry install
-    poetry install --editable  #for editable installation
+    poetry install --editable  # for editable installation
     ```
-     *for more :* <code>[install](https://python-poetry.org/docs/cli/#install)</code>
-- **Observe Pakage**
+    For more [`install`](https://python-poetry.org/docs/cli/#install)
+
+- **View Packages**
+
     ```bash
-    poetry show # show all the pakages 
-    poetry show <pakage-name> # show a single pakage
+    poetry show              # show all packages
+    poetry show <package-name>  # show details of a single package
     ```
-     *for more :* <code>[show](https://python-poetry.org/docs/cli/#show)</code>
+    For more [`show`](https://python-poetry.org/docs/cli/#show)
+
 - **Build Project Source and Wheels**
+
     ```bash
-    poetry build 
+    poetry build
     ```
-     *for more :* <code>[build](https://python-poetry.org/docs/cli/#build)</code>
+    For more [`build`](https://python-poetry.org/docs/cli/#build)

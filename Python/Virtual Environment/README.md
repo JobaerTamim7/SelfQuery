@@ -4,6 +4,7 @@ This folder serves as a dedicated space for my learning process and documenting 
 ## Technology
 - ### Virtual Environment Tools:
     - **Poetry**: A dependency management and packaging tool that simplifies the process of managing virtual environments and project dependencies.
+    - **pyproject.toml**: A configuration file used in conjunction with Poetry (and other tools) to define the project's dependencies, build system requirements, and metadata. 
 
 - ### Future Updates:
     This folder will be regularly updated as I continue to learn and encounter new challenges related to virtual environments. I plan to:

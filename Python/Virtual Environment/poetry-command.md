@@ -110,3 +110,22 @@
     poetry build
     ```
     For more [`build`](https://python-poetry.org/docs/cli/#build)
+- **Listing Environment**
+
+    ```bash
+    poetry list   #shows all the environments
+    ```
+    For more [`list`](https://python-poetry.org/docs/cli/#list) 
+- **Delete Enviroment**
+
+    ```bash
+    poetry env remove <env_name>
+    ```
+    For more [`remove`](https://python-poetry.org/docs/managing-environments/#deleting-the-environments)
+    <small>
+    <details>
+    <summary>For Remove</summary>
+        1. At fisrt navigate to the project directory using <code>cd</code>
+        2. Check the virtual environment using command <code>poetry list</code>
+    </details>
+    </small>

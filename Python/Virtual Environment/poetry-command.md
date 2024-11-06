@@ -115,13 +115,13 @@
     ```bash
     poetry env list   #shows all the environments
     ```
-    For more [`list`](https://python-poetry.org/docs/cli/#list) 
+    For more [`env list`]([https://python-poetry.org/docs/cli/#list](https://python-poetry.org/docs/managing-environments/#listing-the-environments-associated-with-the-project)) 
 - **Delete Enviroment**
 
     ```bash
     poetry env remove <env_name>
     ```
-    For more [`remove`](https://python-poetry.org/docs/managing-environments/#deleting-the-environments)
+    For more [`env remove`](https://python-poetry.org/docs/managing-environments/#deleting-the-environments)
     <small>
     <details>
     <summary>For Remove</summary>

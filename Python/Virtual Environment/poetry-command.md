@@ -113,7 +113,7 @@
 - **Listing Environment**
 
     ```bash
-    poetry list   #shows all the environments
+    poetry env list   #shows all the environments
     ```
     For more [`list`](https://python-poetry.org/docs/cli/#list) 
 - **Delete Enviroment**

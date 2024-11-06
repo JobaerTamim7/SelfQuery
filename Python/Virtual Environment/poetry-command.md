@@ -115,7 +115,7 @@
     ```bash
     poetry env list   #shows all the environments
     ```
-    For more [`env list`]([https://python-poetry.org/docs/cli/#list](https://python-poetry.org/docs/managing-environments/#listing-the-environments-associated-with-the-project)) 
+    For more [`env list`](https://python-poetry.org/docs/managing-environments/#listing-the-environments-associated-with-the-project) 
 - **Delete Enviroment**
 
     ```bash

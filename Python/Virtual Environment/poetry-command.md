@@ -124,8 +124,23 @@
     For more [`env remove`](https://python-poetry.org/docs/managing-environments/#deleting-the-environments)
     <small>
     <details>
-    <summary>For Remove</summary>
-        1. At fisrt navigate to the project directory using <code>cd</code>
+        <summary>For Remove</summary>
+        1. At fisrt navigate to the project directory using <code>cd</code> <br>
         2. Check the virtual environment using command <code>poetry list</code>
+    </details>
+    </small>
+    
+- **Make requirements.txt**
+
+    ```bash
+    poetry export -f requirements.txt --without-hashes --output requirements.txt
+    ```
+    <small>
+    <details>
+        <summary>About flags</summary>
+        1. <code> -f </code> => file format. Most popular tools (pip) use requirements.txt format.<br>
+        2. <code> --without-hashes </code> => Does not include hashes in the txt. <br>
+        3. <code> --output </code> => The output file name.<br>
+        <i>Also there are many format of files like requirements.txt => 1. json, 2. constaints.txt</i>
     </details>
     </small>

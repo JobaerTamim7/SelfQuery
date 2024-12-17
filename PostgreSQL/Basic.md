@@ -115,7 +115,7 @@
     To create table : 
     ```sql
     CREATE [TEMP] [UNLOGGED] TABLE [IF NOT EXISTS] <table_name> OF <table_type> (
-    <column_name> <data_type> [CONSTRAINT <constraint_name> <constraint_type>] | LIKE <source_table>
+    <column_name> <data_type> [[CONSTRAINT <constraint_name>] <constraint_type>] | LIKE <source_table>
     )
     [INHERITS(parent_table)]
     [PARTITION BY {RANGE | LIST | HASH}]
@@ -129,13 +129,111 @@
 
     *Child to Parent:* Conversely, if you change the child table (e.g., adding a new column to the child), the parent table will not be affected. The parent table's structure remains the same.
     - For More : [CREATE TABLE](https://www.postgresql.org/docs/current/sql-createtable.html#SQL-CREATETABLE-PARMS-INHERITS)
+    - Data Types Chart : [Data Types](https://www.geeksforgeeks.org/postgresql-data-types/)
     
     **Example 1 : Column level Constraints**
     ```sql
     CREATE TABLE films(
         code char(5) CONSTRAINT film_code PRIMARY KEY,                          --Column that have string with fix length 5. Constraint name is firstkey and type is PRIMARY KEY
-        title varchar(100) CONSTRAINT NOT NULL,                                 --Column that have string with var length 100. Constraint type is not null
-        production_date DATE CONSTRAINT CHECK(production_date <= CURRENT_DATE)  --Column that have date data type. Constraint type is CHECK(expression)
-        kind VARCHAR(10) CONSTRAINT CHECK (kind IN ('Action', 'Comedy', 'Drama', 'Documentary', 'Thriller')),  -- Check constraint for valid film kinds
-        );
+        title VARCHAR(100) NOT NULL,                                            --Column that have string with var length 100. Constraint type is not null
+        production_date DATE CHECK(production_date <= CURRENT_DATE),             --Column that have date data type. Constraint type is CHECK(expression)
+        kind VARCHAR(10) CHECK (kind IN ('Action', 'Comedy', 'Drama', 'Documentary', 'Thriller')),  -- Check constraint for valid film kinds
+        entry_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    ```
+    **Example 2 : Table level Constraints** 
+    ```sql
+    CREATE TABLE employees(
+        employee_id SERIAL PRIMARY KEY,
+        first_name VARCHAR(100),
+        last_name VARCHAR(100),
+        dept_id INTEGER NOT NULL,
+        salary NUMERIC(10,2),
+        CONSTRAINT chk_salary CHECK (Salary > 0 AND FirstName <> '' AND LastName <> ''),
+        CONSTRAINT unique_name UNIQUE(FirstName,LastName),
+        CONSTRAINT fk_dept FOREIGN KEY(DeptID) REFERENCES Departments(ID)
+        ON DELETE CASCADE   --Ensures that when a department id ( basically dept ) is deleted all the data of the emplyees also is deleted
+        ON UPDATE CASCADE   --Ensures that when a dept id is updated in Departments the Employees DeptID also updates
+    );
+    ```
+    **Example 3 : Table level Constraint**
+    ```sql
+    CREATE TABLE circles(
+        circle_id SERIAL PRIMARY KEY,
+        center POINT NOT NULL,
+        radius DOUBLE PRECISION NOT NULL CHECK(radius>0),
+        EXCLUDE USING GIST(
+            center WITH &&,
+            (circle(center, radius)) WITH &&
+        )
+    )
+    ```
+    *Column level is recommneded for being faster*
+    
+    *Learn more about gist and overlaping operator (&&) in INDEX and OPERATOR and FUNCTIONS*
+    
+    **Example 4 : User Types**
+    ```sql
+    --Creating ENUM type
+    CREATE TYPE mood AS ENUM('happy','sad','neutral');
+    --Creating Composite type
+    CREATE TYPE address AS (
+        street VARCHAR(100),
+        city VARCHAR(50),
+        zip_code VARCHAR(10)
+    );
+    CREATE TABLE person OF address(
+        name VARCHAR(100),
+        person_mood mood
+    )
+    ```
+---
+- **Inserting into table :**
+
+    To insert a row in a table : 
+    ```sql
+    INSERT INTO <table_name> [AS <alias>] 
+    (
+        column_name[...]  -- Names of column name separated with comma.
+    )
+    [OVERRIDING {USER | SYSTEM} VALUE]
+    {VALUES() | <query>}
+    ```
+    
+    - For more : [INSERT INTO](https://www.postgresql.org/docs/current/sql-insert.html)
+    
+    **EXAMPLE**
+    ```sql
+    -- Multiple insertions
+    INSERT INTO films (code, title, did, date_prod, kind) VALUES
+        ('B6717', 'Tampopo', 110, '1985-02-10', 'Comedy'),
+        ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
+    --Insert with query
+    INSERT INTO films SELECT * FROM tmp_films WHERE date_prod < '2004-05-07'; -- Insert every entry from tmp_films table where condition is met
+    ```
+    **Example : Inserting 1D or 2D array**
+    ```sql
+    CREATE TABLE exam_data(
+        q_id SERIAL PRIMARY KEY,
+        q_text TEXT,
+        answer INTEGER CONSTRAINT valid_option CHECK(answer > 0 AND answer < 5),
+        student_response INTEGER[][]
+    );
+    -- adding options column to store options 
+    ALTER TABLE exam_data
+    ADD COLUMN options TEXT[];
+    
+    --check options length is 4
+    ALTER TABLE exam_data
+    ADD CONSTRAINT valid_options_len
+    CHECK(array_length(options,1) = 4);
+
+
+    INSERT INTO exam_data(q_text,options, answer, student_response)
+    VALUES(
+        'Who is the inventor of Atomic Bomb?',
+        '{'Oppenheimer','Bhor','Leslie Groves','Erwin Schrödinger'}',
+        1,
+        '{{1,0},{5,1},{3,0}}' -- {1,0} means 1st student attemped once but failed.
+    )
     ```

@@ -237,3 +237,48 @@
         '{{1,0},{5,1},{3,0}}' -- {1,0} means 1st student attemped once but failed.
     )
     ```
+---
+- **Select from table**
+    
+    To select something :
+    ```sql
+    SELECT [ ALL | DISTINCT [ON(expression[...])] ]             -- ALL: all rows (default) | DISTINCT: distinct rows
+    [{* | column_name | expression [AS output_name)] } ]
+    [FROM from_item[...]]
+    [ WHERE condition ]
+    [ GROUP BY [ ALL | DISTINCT ] grouping_element [, ...] [HAVING condition] ]
+    [ ORDER BY expression [ ASC | DESC ]]                      -- Default ASC
+    [ LIMIT { count | ALL } ] 
+    [ OFFSET start ]
+    [ FETCH { FIRST | NEXT } [ count ] { ROW | ROWS } { ONLY | WITH TIES } ]    -- ONLY: Exact | WITH TIES: Take all the value with tied. (i.e. 3 WITH TIES -> 1000,1000,2000,2000)
+    ```
+    *from_items* : table, view or result of subquery (). It also can be from multiple tables.
+
+    *grouping_elements* : can be a column or mlultiple ones which is the of group.
+    
+    *How group works* : At first it organize the rows based on column(s) making it a group. After that it use calculations. 
+    
+    - For more: [SELECT](https://www.postgresql.org/docs/current/sql-select.html)
+
+    **EXAMPLE**
+    
+    ```sql
+    SELECT * FROM my_table;
+    
+    SELECT DISTINCT dept FROM company;
+    
+    SELECT DISTINCT ON(dept) dept, name FROM company;       -- Gives dept and name column on distinct dept
+    
+    SELECT * FROM company;
+    
+    SELECT name FROM (SELECT * FROM company WHERE salary > 5000) AS high_salary; -- Table alias name is high_salary
+    
+    SELECT seller_id, SUM(sales_amount) AS total_sale
+    FROM sales
+    GROUP BY seller_id
+    HAVING SUM(sales_amount) > 5000
+    ORDER BY total_sale
+    LIMIT 30 OFFSET 5;
+    
+    ```
+

@@ -1,0 +1,40 @@
+a {
+  position: relative;
+  display: inline-block;
+  padding: 20px;
+  color: #adadad;
+  background-color: #373737;
+  border-radius: 50%;
+  transition: color .5s ease-in-out, --fill .5s ease-in-out;
+  text-align: center;
+  margin: auto;
+}
+
+@property --fill {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+a::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  translate: -6px -6px;
+  padding: 6px;
+
+  background: conic-gradient(greenyellow var(--fill), transparent var(--fill));
+
+}
+
+a:hover {
+  color: greenyellow;
+  --fill: 100%;
+}

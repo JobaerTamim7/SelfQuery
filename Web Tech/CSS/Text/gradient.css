@@ -1,0 +1,46 @@
+.gradient-text{
+    color: transparent; /*Making the text color to none*/
+    background: linear-gradient(45deg,#a855f7,#0062ff); /*background color*/
+    background-clip: text; /*where to apply the background. By default border box*/
+    font-size: 24px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+/*
+The idea is 
+1. make a gradient text
+2. make the bg bigger
+3. animate bg-position from x = 100% and y = 100% (bottom right) to x = 0% and y = 0% (top left)  
+4. for smoother animation  reapeat colors
+*/
+
+
+.animated-gradient-text {
+    color: transparent;
+    background: linear-gradient(
+        60deg,
+        #a855f7,
+        #0062ff,
+        #f75599,
+        #a855f7,
+        #0062ff,
+        #f75599
+    );
+    background-clip: text;
+    background-size: 300%; 
+    animation: gradient-flow 2s linear infinite;
+    font-size: 24px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 100%;
+    }
+    100%{
+        background-position: 0%;
+    }
+}

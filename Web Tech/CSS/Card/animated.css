@@ -1,0 +1,53 @@
+.image {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 10px;
+  padding: 3px;
+  background: white;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+}
+
+.animated {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 10px;
+    width: 30vw;
+    background: #a1a1a1;
+    padding: 10px;
+}
+
+.animated::after{
+    /*If not use flex use this to center the after pseudo element*/
+
+    /* top: 0;
+    left: 0;
+    translate: -3px -3px; */
+
+    border-radius: inherit;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(from var(--angle),red 5%, transparent 5% 50%,red 50% 55%, transparent 55% 100%);
+    z-index: -1;
+    padding: 3px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from{
+        --angle : 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}

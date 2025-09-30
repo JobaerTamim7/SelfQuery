@@ -58,7 +58,7 @@
     NOSUPERUSER             -- Non super user
     NOCREATEDB              -- Cannot create DB
     NOCREATEROLE            -- Cannot create new role (user or group)
-    VALID UNTIL '2030-12-31 -- Valid until the end of 2030
+    VALID UNTIL '2030-12-31' -- Valid until the end of 2030
     ```
     **Example 2**
     ```sql
